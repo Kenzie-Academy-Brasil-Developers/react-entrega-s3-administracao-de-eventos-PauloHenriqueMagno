@@ -14,6 +14,8 @@ const Carts = () =>{
         shoppingCart
     } = useContext(CartContext)
 
+
+
     return (
         <>
             {
@@ -23,13 +25,17 @@ const Carts = () =>{
             <ItemsList>
                 {
                 params.type==="cart"?
-                shoppingCart && shoppingCart.map(item => ShowItems(item, true)):
+                shoppingCart.map(item => ShowItems(item, true)):
+
                 params.type==="graduation"?
-                cartListGraduation && cartListGraduation.map(item => ShowItems(item, true)):
+                cartListGraduation.map(item => ShowItems(item, true)):
+
                 params.type==="wedding"?
-                cartListWedding && cartListWedding.map(item => ShowItems(item, true)):
+                cartListWedding.map(item => ShowItems(item, true)):
+
                 params.type==="confraternization"?
-                cartListConfraternization && cartListConfraternization.map(item => ShowItems(item, true)):
+                cartListConfraternization.map(item => ShowItems(item, true)):
+
                 <ErrorPage>Página não encontrada</ErrorPage>
                 }
             </ItemsList>

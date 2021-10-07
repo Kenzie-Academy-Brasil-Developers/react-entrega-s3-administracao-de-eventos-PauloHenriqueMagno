@@ -7,7 +7,11 @@ import { useLocation } from "react-router";
 const AddToCartFooter = () => {
     const location = useLocation();
     
-    const { shoppingCart, addToCart, removeFromCart} = useContext(CartContext)
+    const { 
+        shoppingCart,
+        addToCart,
+        removeFromCart
+    } = useContext(CartContext)
 
     const [event, setEvent] = useState('');
 
@@ -22,7 +26,7 @@ const AddToCartFooter = () => {
 
         if(!!alreadyHasThis){
             addToCart(alreadyHasThis, "noAlert");
-        }
+        };
     }
 
     return (
@@ -33,12 +37,12 @@ const AddToCartFooter = () => {
             location.pathname!=="/graduation"
             )?<>
 
-            <p>{shoppingCart.length} Items</p>
+            <p>{!!shoppingCart?shoppingCart.length:0} Items</p>
             <FormControl className="Form">
                 <InputLabel>Choose event to add</InputLabel>
                 <Select
                 value={event}
-                onChange={handleChange}
+                onChange={(e)=> handleChange(e)}
                 label="Choose event to add"
                 >
                 <MenuItem value={"Wedding"}>Wedding</MenuItem>

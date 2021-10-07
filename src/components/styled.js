@@ -60,7 +60,7 @@ export const ErrorPage = styled.p`
 export const Header = styled.header`
   width: 100%;
   padding: 10px 20px 10px 15px;
-  background-color: rgb(0, 55, 150);
+  background-color: rgb(100, 155, 255);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -142,7 +142,7 @@ export const TitleSecond = styled.h2`
 `;
 
 export const Footer = styled.footer`
-  background-color: rgb(0, 55, 150);
+  background-color: rgb(100, 155, 255);
   width: 100%;
   min-height: 30px;
   padding: 15px;

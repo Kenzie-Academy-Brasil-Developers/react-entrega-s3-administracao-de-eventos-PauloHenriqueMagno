@@ -18,7 +18,7 @@ const HeaderMain = () =>{
                 <HeaderNav>
                     <Button onClick={()=> history.push("/")}>Home</Button>
                     <MenuButton />
-                    <Badge badgeContent={shoppingCart.length} color="primary">
+                    <Badge badgeContent={!!shoppingCart? shoppingCart.length : 0} color="primary">
                         <Button onClick={()=> history.push("/cart")}>
                             <ShoppingCart />
                         </Button>
