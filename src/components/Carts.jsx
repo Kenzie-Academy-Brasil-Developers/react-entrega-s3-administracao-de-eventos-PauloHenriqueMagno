@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { CartContext } from "../providers/cart"
 import { useParams } from "react-router-dom"
 import ShowItems from "./ShowItems"
-import { ErrorPage } from "./styled"
+import { ErrorPage, TitleSecond, ItemsList } from "./styled"
 
 const Carts = () =>{
     const params = useParams()
@@ -15,19 +15,26 @@ const Carts = () =>{
     } = useContext(CartContext)
 
     return (
-        <ul className="CartList">
+        <>
             {
-            params.type==="cart"?
-            shoppingCart && shoppingCart.map(item => ShowItems(item, true)):
-            params.type==="wedding"?
-            cartListGraduation && cartListGraduation.map(item => ShowItems(item, true)):
-            params.type==="graduation"?
-            cartListWedding && cartListWedding.map(item => ShowItems(item, true)):
-            params.type==="confraternization"?
-            cartListConfraternization && cartListConfraternization.map(item => ShowItems(item, true)):
-            <ErrorPage>Página não encontrada</ErrorPage>
+                params.type &&
+                <TitleSecond>{params.type.toUpperCase()}</TitleSecond>
             }
-        </ul>
+            <ItemsList>
+                {
+                params.type==="cart"?
+                shoppingCart && shoppingCart.map(item => ShowItems(item, true)):
+                params.type==="graduation"?
+                cartListGraduation && cartListGraduation.map(item => ShowItems(item, true)):
+                params.type==="wedding"?
+                cartListWedding && cartListWedding.map(item => ShowItems(item, true)):
+                params.type==="confraternization"?
+                cartListConfraternization && cartListConfraternization.map(item => ShowItems(item, true)):
+                <ErrorPage>Página não encontrada</ErrorPage>
+                }
+            </ItemsList>
+            
+        </>
     )
 }
 

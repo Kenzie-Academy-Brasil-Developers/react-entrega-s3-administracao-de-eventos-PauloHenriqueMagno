@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { CartContext} from "../providers/cart";
 import { Button, ItemComponent, Image } from "./styled";
+import { useParams } from "react-router-dom";
 
 const ShowItems = (item, removable = false) =>{
+    const params = useParams()
+
     const { addToCart, removeFromCart } = useContext(CartContext)
 
     const maxLength = (string) =>{
@@ -22,8 +25,8 @@ const ShowItems = (item, removable = false) =>{
             </div>
             {
                 removable?
-                <Button onClick={()=> removeFromCart(item)}>Remove</Button>:
-                <Button onClick={()=> addToCart(item)}>Add</Button>
+                <Button onClick={()=> removeFromCart(item, params.type)}>Remove</Button>:
+                <Button onClick={()=> addToCart(item)}>Add</Button> 
             }
         </ItemComponent>
     )

@@ -6,7 +6,6 @@ export const Button = styled.button`
   height: 35px;
   border: 2px solid black;
   border-radius: 8px;
-  margin: auto;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -16,6 +15,10 @@ export const Button = styled.button`
   }
   &:active {
     filter: brightness(130%);
+  }
+  &:disabled {
+    filter: brightness(50%);
+    cursor: default;
   }
   svg {
     height: 25px;
@@ -60,13 +63,31 @@ export const Header = styled.header`
   background-color: rgb(0, 55, 150);
   position: sticky;
   top: 0;
+  z-index: 10;
+  div.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @media(min-width: 500px){
+      flex-direction: row;
+    };
+    button {
+      margin: none
+    }
+  };
 `;
 
 export const HeaderNav = styled.nav`
   display: flex;
+  width: max-content;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
+  padding: 5px 0 0 0;
   gap: 5px;
+  @media(min-width: 500px){
+    justify-content: flex-end;
+  }
 `;
 
 export const ItemComponent = styled.li`
@@ -81,6 +102,8 @@ export const ItemComponent = styled.li`
   button {
     width: 70%;
     background-color: rgb(0,150,0);
+    margin: auto;
+    font-size: 20px;
     &:hover {
       filter: brightness(70%);
     };
@@ -99,7 +122,41 @@ export const ItemComponent = styled.li`
 
 export const ItemsList = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 5px;
   padding: 30px 15px;
+
+  @media(min-width: 500px){
+    grid-template-columns: 1fr 1fr
+  };
+
+  @media(min-width: 769px){
+    grid-template-columns: 1fr 1fr 1fr;
+  };
+`;
+
+export const TitleSecond = styled.h2`
+  margin: auto;
+  text-align: center;
+  padding: 15px 15px 0;
+`;
+
+export const Footer = styled.footer`
+  background-color: rgb(0, 55, 150);
+  width: 100%;
+  min-height: 30px;
+  padding: 15px;
+  position: sticky;
+  bottom: 0;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding-left: 15px;
+  };
+  .Form {
+    min-width: 200px;
+  };
 `;

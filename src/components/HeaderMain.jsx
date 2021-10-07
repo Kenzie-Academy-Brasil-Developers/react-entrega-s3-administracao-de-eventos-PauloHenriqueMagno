@@ -13,7 +13,7 @@ const HeaderMain = () =>{
 
     return (
         <Header>
-            <Container className="flex-row">
+            <Container className="container">
                 <h1>KenzieEvents</h1>
                 <HeaderNav>
                     <Button onClick={()=> history.push("/")}>Home</Button>

@@ -1,40 +1,83 @@
 import { createContext, useState } from "react";
+import { toast } from "react-toastify"
 
 export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
-    const [cartListGraduation, setCartListGraduation] = useState([])
     const [shoppingCart, setShoppingCart] = useState([])
+    const [cartListGraduation, setCartListGraduation] = useState([])
     const [cartListWedding, setCartListWedding] = useState([])
     const [cartListConfraternization, setCartListConfraternization] = useState([])
 
-    const addToCart = (product, setState = "") =>{
-        if(setState==="graduation"){
-            return setCartListGraduation([...cartListGraduation, product])
+    const addEvent = (setCart, cart, product) =>{
+        const newArray = product.filter(item => cart.some(prod => prod===item))
+        const remainArray = product.filter(item => !cart.some(prod => prod===item))
+
+        setCart(cart.concat(remainArray))
+
+        if(newArray.length!==0){
+            toast.info("Event already has this item(s)")
         }
-        if(setState==="wedding"){
-            return setCartListWedding([...cartListWedding, product])
+        if(newArray.length===0){
+            toast.success("Successfully added")
         }
-        if(setState==="confraternization"){
-            return setCartListConfraternization([...cartListConfraternization, product])
-        }
-        if(!shoppingCart.some(item => item.id === product.id)){
-            setShoppingCart([...shoppingCart, product])
-        }
+        return newArray
     }
 
-    const removeFromCart = (product, setState = "") =>{
-        if(setState==="graduation"){
-            setCartListGraduation(cartListGraduation.filter(item => item.id!==product.id))
+    const addToCart = (product, event) =>{
+        if(event==="graduation"){
+            return addEvent(setCartListGraduation, cartListGraduation, product)
         }
-        if(setState==="wedding"){
-            setCartListWedding(cartListWedding.filter(item => item.id!==product.id))
+        if(event==="wedding"){
+            return addEvent(setCartListWedding, cartListWedding, product)
         }
-        if(setState==="confraternization"){
-            setCartListConfraternization(cartListConfraternization.filter(item => item.id!==product.id))
+        if(event==="confraternization"){
+            return addEvent(setCartListConfraternization, cartListConfraternization, product);
+        }
+        if(event==="noAlert"){
+            setShoppingCart(product);
+            return
+        }
+        if(!shoppingCart.some(item => item.id === product.id)){
+            toast.success("Successfully added")
+            setShoppingCart([...shoppingCart, product])
+            return
+        }
+        if(shoppingCart.some(item => item.id === product.id)){
+            toast.error("Already has this item")
+            return
         }
 
-        setShoppingCart(shoppingCart.filter(item => item.id!==product.id))  
+        toast.error("Failed to add")
+    }
+
+    const removeFromCart = (product, event) =>{
+        if(event==="graduation"){
+            toast.success("Successfully removed")
+            setCartListGraduation(cartListGraduation.filter(item => item!==product))
+            return
+        }
+        if(event==="wedding"){
+            toast.success("Successfully removed")
+            setCartListWedding(cartListWedding.filter(item => item!==product))
+            return
+        }
+        if(event==="confraternization"){
+            toast.success("Successfully removed")
+            setCartListConfraternization(cartListConfraternization.filter(item => item!==product))
+            return
+        }
+        if(event==="clear"){
+            setShoppingCart([])
+            return
+        }
+        if(event==="cart"){
+            toast.success("Successfully removed")
+            setShoppingCart(shoppingCart.filter(item => item!==product))  
+            return
+        }
+
+        toast.error("Failed to remove")
     }
 
     return (
