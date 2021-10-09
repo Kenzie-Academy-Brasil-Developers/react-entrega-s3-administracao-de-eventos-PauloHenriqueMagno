@@ -1,9 +1,9 @@
-import { Header, HeaderNav, Container, Button } from "./styled"
+import { Header, HeaderNav, Container, Button } from "../styled"
 import { useHistory } from "react-router-dom"
 import { Badge } from "@material-ui/core"
 import { ShoppingCart } from "@material-ui/icons"
-import MenuButton from "./MenuButton"
-import { CartContext } from "../providers/cart"
+import MenuButton from "../MenuButton"
+import { CartContext } from "../../providers/cart"
 import { useContext } from "react"
 
 const HeaderMain = () =>{

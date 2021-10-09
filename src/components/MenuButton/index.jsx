@@ -1,7 +1,7 @@
 import { Menu, MenuItem } from "@material-ui/core"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 import { useState } from "react";
-import { Button } from "./styled";
+import { Button } from "../styled";
 import { useHistory } from "react-router-dom"
 
 const MenuButton = () => {

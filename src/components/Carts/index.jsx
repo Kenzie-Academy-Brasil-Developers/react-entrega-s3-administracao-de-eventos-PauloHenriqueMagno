@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import { CartContext } from "../providers/cart"
+import { CartContext } from "../../providers/cart"
 import { useParams } from "react-router-dom"
-import ShowItems from "./ShowItems"
-import { ErrorPage, TitleSecond, ItemsList } from "./styled"
+import ShowItems from "../ShowItems"
+import { ErrorPage, TitleSecond, ItemsList } from "../styled"
 
 const Carts = () =>{
     const params = useParams()
@@ -14,7 +14,15 @@ const Carts = () =>{
         shoppingCart
     } = useContext(CartContext)
 
+    const cartList = (cart) => {
 
+        if(cart.length===0){
+            return <ErrorPage>Empty</ErrorPage>
+        }
+        return (
+            cart.map(item => ShowItems(item, true))
+        )
+    }
 
     return (
         <>
@@ -25,16 +33,16 @@ const Carts = () =>{
             <ItemsList>
                 {
                 params.type==="cart"?
-                shoppingCart.map(item => ShowItems(item, true)):
+                cartList(shoppingCart):
 
                 params.type==="graduation"?
-                cartListGraduation.map(item => ShowItems(item, true)):
+                cartList(cartListGraduation):
 
                 params.type==="wedding"?
-                cartListWedding.map(item => ShowItems(item, true)):
+                cartList(cartListWedding):
 
                 params.type==="confraternization"?
-                cartListConfraternization.map(item => ShowItems(item, true)):
+                cartList(cartListConfraternization):
 
                 <ErrorPage>Página não encontrada</ErrorPage>
                 }

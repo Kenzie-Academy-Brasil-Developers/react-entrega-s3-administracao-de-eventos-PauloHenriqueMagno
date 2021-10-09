@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { CartContext} from "../providers/cart";
-import { Button, ItemComponent, Image } from "./styled";
+import { CartContext} from "../../providers/cart";
+import { Button, ItemComponent, Image } from "../styled";
 import { useParams } from "react-router-dom";
 
 const ShowItems = (item, removable = false) =>{

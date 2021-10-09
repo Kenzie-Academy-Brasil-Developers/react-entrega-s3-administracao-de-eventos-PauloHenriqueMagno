@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ShoppingContext } from "../providers/shopping";
-import ShowItems from "./ShowItems";
-import { ItemsList } from "./styled";
+import { ShoppingContext } from "../../providers/shopping";
+import ShowItems from "../ShowItems";
+import { ItemsList } from "../styled";
 
 const ShoppingList = () => {
     const { shoppingList } = useContext(ShoppingContext)

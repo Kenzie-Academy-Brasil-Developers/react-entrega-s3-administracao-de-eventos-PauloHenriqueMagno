@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { InputLabel, MenuItem, FormControl, Select } from "@material-ui/core"
-import { CartContext } from "../providers/cart";
-import { Button } from "./styled";
+import { CartContext } from "../../providers/cart";
+import { Button } from "../styled";
 import { useLocation } from "react-router";
 
 const AddToCartFooter = () => {
@@ -39,11 +39,11 @@ const AddToCartFooter = () => {
 
             <p>{!!shoppingCart?shoppingCart.length:0} Items</p>
             <FormControl className="Form">
-                <InputLabel>Choose event to add</InputLabel>
+                <InputLabel>Choose event</InputLabel>
                 <Select
                 value={event}
                 onChange={(e)=> handleChange(e)}
-                label="Choose event to add"
+                label="Choose event"
                 >
                 <MenuItem value={"Wedding"}>Wedding</MenuItem>
                 <MenuItem value={"Graduation"}>Graduation</MenuItem>

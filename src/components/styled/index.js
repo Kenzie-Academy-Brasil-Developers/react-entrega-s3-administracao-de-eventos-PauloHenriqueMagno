@@ -28,19 +28,23 @@ export const Button = styled.button`
 export const Container = styled.div`
   width: 100%;
   max-width: 900px;
+  min-height: 100%;
   margin: auto;
 `;
 
 export const Image = styled.div`
-  width: 90%;
-  height: 200px;
-  margin: auto;
+  min-width: 70px;
+  height: 100px;
   display: flex;
   justify-content: center;
-  margin-bottom: 6px;
+  margin-right: 6px;
   img {
     max-width: 100%;
     max-height: 100%;
+  }
+  @media(min-width: 500px){
+    width: 90%;
+    height: 200px;
     margin: auto;
   }
 `;
@@ -50,11 +54,13 @@ export const InputSelect = styled.input`
 `;
 
 export const ErrorPage = styled.p`
-  position: fixed;
   margin: auto;
-  inset: 50%;
-  transform: translate(-50%);
-  width: max-content;
+  position: absolute;
+  text-align: center;
+  border: 2px solid rgb(200, 50, 50);
+  border-radius: 5px;
+  background-color: rgba(200, 50, 50, 0.5);
+  padding: 5px;
 `;
 
 export const Header = styled.header`
@@ -92,18 +98,18 @@ export const HeaderNav = styled.nav`
 
 export const ItemComponent = styled.li`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 10px;
-  justify-content: space-between;
   border: 2px solid rgb(0,0,0);
   border-radius: 8px;
   button {
-    width: 70%;
     background-color: rgb(0,150,0);
-    margin: auto;
-    font-size: 20px;
+    margin: 0 2px 0 5px; 
+    font-size: 0.7rem;
     &:hover {
       filter: brightness(70%);
     };
@@ -115,8 +121,25 @@ export const ItemComponent = styled.li`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 200px;
-    margin-bottom: 15px;
+    font-size: 0.7rem;
+    gap: 5px;
+  }
+  @media(min-width: 500px){
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    div.info {
+      gap: default;
+      min-height: 160px;
+      margin: 15px 0;
+      font-size: 1rem;    
+    }
+    button {
+      margin: auto;
+      width: 90%;
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -138,6 +161,7 @@ export const ItemsList = styled.ul`
 export const TitleSecond = styled.h2`
   margin: auto;
   text-align: center;
+  text-decoration: underline;
   padding: 15px 15px 0;
 `;
 
@@ -148,6 +172,7 @@ export const Footer = styled.footer`
   padding: 15px;
   position: sticky;
   bottom: 0;
+  font-size: 0.8rem;
 
   .container {
     display: flex;
@@ -157,6 +182,10 @@ export const Footer = styled.footer`
     padding-left: 15px;
   };
   .Form {
-    min-width: 200px;
+    min-width: 150px;
   };
+  
+  @media(min-width: 500px){
+    font-size: 1rem;
+  }
 `;
